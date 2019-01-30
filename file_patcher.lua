@@ -1,5 +1,18 @@
 file_patcher = { 
-  preprocessors = {}
+  preprocessors = {
+    simple = {
+
+    },
+    rules = {
+
+    },
+    actions = {
+
+    },
+    themes = {
+
+    }
+  }
 }
 
 require("file_patcher.mod")
