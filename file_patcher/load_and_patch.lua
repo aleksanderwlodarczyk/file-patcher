@@ -12,14 +12,19 @@ function file_patcher.load_and_patch(name, mode, pre_content_write, post_content
         file_patcher.rewrite_file_content(created_file, modulepath)
         file_patcher.write_to_file(created_file, post_content_write)
 
-      elseif mode == "action" then
+      elseif mode == "action" mode == "actions" then
         local header = file_patcher.extract_header(modulepath)
-        for _, fn in ipairs() do
+        for _, fn in ipairs(file_patcher.preprocessors[mode]) do
           fn(created_file, header, modulepath)
         end
 
-      elseif mode == "rule" then
-        -- loop over rule preprocessors
+      elseif mode == "rule" or mode == "rules" then
+        local header = file_patcher.extract_header(modulepath)
+        local priority = header.priority or 1
+
+        for _, fn in ipairs(file_patcher.preprocessors[mode]) do
+          fn(created_file, header, modulename, priority, modulepath)
+        end
       end
 
       created_file:close()
