@@ -1,4 +1,4 @@
-function file_patcher.write_rule_function (created_file, header, modulename, priority, modulepath)
+function write_rule_function (created_file, header, modulename, priority, modulepath)
   created_file:write("\nlocal events_parameters = { }")
   created_file:write("\nlocal function rule(" .. header.input_parameter)
   for k, v in pairs (_G.every_events_actions_parameters) do
@@ -41,4 +41,4 @@ function file_patcher.write_rule_function (created_file, header, modulename, pri
   created_file:write("\nend\n") -- bottom rule function wrapper
 end
 
-file_patcher.add_preprocessor(file_patcher.write_rule_function, "rules")
+file_patcher.add_preprocessor(write_rule_function, "rules")

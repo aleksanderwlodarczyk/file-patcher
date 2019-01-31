@@ -1,4 +1,4 @@
-function file_patcher.write_function (created_file, header, modulepath)
+function write_function (created_file, header, modulepath)
     created_file:write("local function action(arguments)\n") -- function wrapper
     for k, v in pairs(header.input_parameters) do
       created_file:write("\n\tlocal " .. v .. " = " .. "arguments[\"" .. v .. "\"]")
@@ -13,4 +13,4 @@ function file_patcher.write_function (created_file, header, modulepath)
     created_file:write("\nend")
 end
 
-file_patcher.add_preprocessor(file_patcher.write_function, "actions")
+file_patcher.add_preprocessor(write_function, "actions")

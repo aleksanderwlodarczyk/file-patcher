@@ -1,4 +1,9 @@
 function file_patcher.load_and_patch(name, mode, pre_content_write, post_content_write)
+
+  if mode == "theme" or mode == "themes" then
+    -- load_themes function here
+  end
+
   package.preload[name] = function(modulename)
     local created_file = io.open("module.lua", "w+")
     local modulepath = string.gsub(modulename, "%.", "/")

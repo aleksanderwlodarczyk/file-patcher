@@ -1,8 +1,5 @@
 file_patcher = { 
   preprocessors = {
-    simple = {
-
-    },
     rules = {
 
     },

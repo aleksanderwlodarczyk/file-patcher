@@ -1,4 +1,4 @@
-function file_patcher.write_input_parameters (created_file, header, modulepath)
+function write_input_parameters (created_file, header, modulepath)
     if header.input_parameters[1] then
       created_file:write("local input_parameters = { " .. "\"" .. header.input_parameters[1] .. "\"")
       for k, v in pairs(header.input_parameters) do
@@ -11,4 +11,4 @@ function file_patcher.write_input_parameters (created_file, header, modulepath)
     end
 end
 
-file_patcher.add_preprocessor(file_patcher.write_input_parameters, "actions")
+file_patcher.add_preprocessor(write_input_parameters, "actions")

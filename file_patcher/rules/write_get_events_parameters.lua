@@ -1,4 +1,4 @@
-function file_patcher.write_get_events_parameters (created_file, header, modulename, priority, modulepath)
+function write_get_events_parameters (created_file, header, modulename, priority, modulepath)
   created_file:write("\nlocal function get_events_parameters(events_actions)")
     created_file:write("\n\tfor k, v in pairs(events_table) do")
       created_file:write("\n\t\tfor k1, v1 in pairs(events_actions[v]) do")
@@ -12,4 +12,4 @@ function file_patcher.write_get_events_parameters (created_file, header, modulen
   created_file:write("\nend")
 end
 
-file_patcher.add_preprocessor(file_patcher.write_get_events_parameters, "rules")
+file_patcher.add_preprocessor(write_get_events_parameters, "rules")
