@@ -1,7 +1,12 @@
-function file_patcher.load_and_patch(name, mode, pre_content_write, post_content_write)
+function file_patcher.patch(name, mode, pre_content_write, post_content_write)
 
   if mode == "theme" or mode == "themes" then
-    -- load_themes function here
+          
+    for _, fn in ipairs(file_patcher.preprocessors.themes) do
+      fn(name)
+    end
+
+    return
   end
 
   package.preload[name] = function(modulename)
@@ -19,7 +24,7 @@ function file_patcher.load_and_patch(name, mode, pre_content_write, post_content
 
       elseif mode == "action" mode == "actions" then
         local header = file_patcher.extract_header(modulepath)
-        for _, fn in ipairs(file_patcher.preprocessors[mode]) do
+        for _, fn in ipairs(file_patcher.preprocessors.actions) do
           fn(created_file, header, modulepath)
         end
 
@@ -27,9 +32,10 @@ function file_patcher.load_and_patch(name, mode, pre_content_write, post_content
         local header = file_patcher.extract_header(modulepath)
         local priority = header.priority or 1
 
-        for _, fn in ipairs(file_patcher.preprocessors[mode]) do
+        for _, fn in ipairs(file_patcher.preprocessors.rules) do
           fn(created_file, header, modulename, priority, modulepath)
         end
+
       end
 
       created_file:close()
