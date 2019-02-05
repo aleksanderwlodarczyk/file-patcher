@@ -1,17 +1,7 @@
 file_patcher = { 
-  preprocessors = {
-    rules = {
-
-    },
-    actions = {
-
-    },
-    themes = {
-
-    }
-  }
+ preprocessors = { }
 }
 
-require("file_patcher.mod")
+require("file-patcher.mod")
 
 return file_patcher
