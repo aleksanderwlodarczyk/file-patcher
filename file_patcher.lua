@@ -2,6 +2,6 @@ file_patcher = {
  preprocessors = { }
 }
 
-require("file-patcher.mod")
+require("third-party.file-patcher.mod")
 
 return file_patcher
